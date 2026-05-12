@@ -10,11 +10,13 @@ type Project = {
   liveUrl?: string;
 };
 
-type ResumeItem = {
+type ExperienceItem = {
   title: string;
   company: string;
   date: string;
-  details: string[];
+  details?: string[];
+  gpa?: string;
+  relevantCoursework?: string[];
 };
 
 const projects: Project[] = [
@@ -37,24 +39,46 @@ const projects: Project[] = [
   },
 ];
 
-const resumeItems: ResumeItem[] = [
+const experienceItems: ExperienceItem[] = [
   {
-    title: "Software Engineering / Data Engineering Intern",
-    company: "Company Name",
+    title: "Data Engineering Intern - Remote",
+    company: "AbbVie Inc.",
     date: "Summer 2025",
     details: [
-      "Built and maintained technical tools used by internal teams.",
-      "Worked with data pipelines, backend systems, and software development workflows.",
-      "Collaborated with engineers to improve reliability and usability.",
+      "Built data features for an ML-powered medical sales planning tool using PySpark in Palantir Foundry.",
+      "Created clean, standardized datasets that could be used by machine learning models.",
+      "Worked with data scientists and analysts to understand project requirements and define what data was needed.",
+      "Joined Scrum meetings with European teams to discuss progress, clarify tasks, and resolve blockers."
+    ],
+  },
+  {
+    title: "Data Engineering Intern - North Chicago, IL",
+    company: "AbbVie Inc.",
+    date: "Summer 2024",
+    details: [
+      "Built SQL ETL pipelines to pull U.S. sales data from multiple sources and turn it into standardized data for reporting.",
+      "Automated data processing workflows using Dataiku and SQL, reducing manual work and keeping datasets accurate and up to date.",
+      "Combined healthcare datasets from relational databases, making the data easier for analytics teams to access and use for faster decision-making."
     ],
   },
   {
     title: "Computer Science Student",
     company: "Arizona State University",
-    date: "Expected Graduation: 2026",
-    details: [
-      "Studying software engineering, data structures, algorithms, and systems programming.",
-      "Interested in backend development, full-stack projects, and practical software tools.",
+    date: "Expected Graduation: 2027",
+    gpa: "3.9 / 4.00",
+    relevantCoursework: [
+      "Data Structures & Algorithms",
+      "Principles of Programming",
+      "Object-Oriented Program & Data",
+      "Computer Organization and Assembly Language Programming",
+      "Intro to Programming Languages",
+      "Theoretical Computer Science",
+      "Discrete Math",
+      "Linear Algebra",
+      "Information Assurance",
+      "Prob & Stats Engineering Problem Solving",
+      "Operating Systems",
+      "Foundations of Data Visualization",
     ],
   },
 ];
@@ -95,7 +119,7 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-function ResumeCard({ item }: { item: ResumeItem }) {
+function ExperienceCard({ item }: { item: ExperienceItem }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -114,11 +138,38 @@ function ResumeCard({ item }: { item: ResumeItem }) {
       </div>
 
       {isOpen && (
-        <ul>
-          {item.details.map((detail) => (
-            <li key={detail}>{detail}</li>
-          ))}
-        </ul>
+        <>
+          {item.details && item.details.length > 0 && (
+            <ul>
+              {item.details.map((detail) => (
+                <li key={detail}>{detail}</li>
+              ))}
+            </ul>
+          )}
+          {(item.gpa ||
+            (item.relevantCoursework && item.relevantCoursework.length > 0)) && (
+            <div className="resume-education-meta">
+              {item.gpa && (
+                <div className="education-row">
+                  <span className="resume-meta-label">GPA</span>
+                  <span className="gpa-value">{item.gpa}</span>
+                </div>
+              )}
+
+              {item.relevantCoursework && item.relevantCoursework.length > 0 && (
+                <div className="coursework-section">
+                  <span className="resume-meta-label">Relevant Coursework</span>
+
+                  <div className="coursework-tags">
+                    {item.relevantCoursework.map((course) => (
+                      <span key={course}>{course}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </>
       )}
     </article>
   );
@@ -134,7 +185,7 @@ export default function App() {
           <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
-            <a href="#resume">Resume</a>
+            <a href="#experience">Experience</a>
           </nav>
         </div>
       </header>
@@ -179,22 +230,18 @@ export default function App() {
         </div>
       </section>
 
-      <section id="resume" className="section white-section">
+      <section id="experience" className="section white-section">
         <div className="container">
-          <h2>Resume</h2>
-
-          <p>
-            Add your resume here so recruiters or visitors can quickly view or download it.
-          </p>
+          <h2>Professional Experience</h2>
 
           <div className="resume-list">
-            {resumeItems.map((item) => (
-              <ResumeCard key={`${item.title}-${item.company}`} item={item} />
+            {experienceItems.map((item) => (
+              <ExperienceCard key={`${item.title}-${item.company}`} item={item} />
             ))}
           </div>
 
-          <a href="/resume.pdf" className="resume-button">
-            View Resume
+          <a href="/Nolan_McDonald_Resume.pdf" className="resume-button">
+            View resume
           </a>
         </div>
       </section>
@@ -204,20 +251,4 @@ export default function App() {
   );
 }
 
-/*
-Future GitHub project idea:
 
-1. Create a function that calls:
-   https://api.github.com/users/YOUR_USERNAME/repos
-
-2. Store the response in state.
-
-3. Replace the placeholder projects array with the GitHub repo data.
-
-Example fields to use:
-- repo.name
-- repo.description
-- repo.html_url
-- repo.homepage
-- repo.language
-*/

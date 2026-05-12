@@ -200,6 +200,72 @@ nav a:hover {
   line-height: 1.7;
 }
 
+.resume-education-meta {
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+.education-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.resume-meta-line {
+  margin: 0 0 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: baseline;
+}
+
+.resume-meta-line:last-child {
+  margin-bottom: 0;
+}
+
+.resume-meta-line-block {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.resume-meta-label {
+  min-width: 170px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.gpa-value {
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.coursework-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.coursework-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 900px;
+}
+
+.coursework-tags span {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
 .resume-button {
   display: inline-block;
   border-radius: 12px;
