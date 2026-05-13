@@ -279,6 +279,44 @@ nav a:hover {
   background: #1d4ed8;
 }
 
+.resume-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9fafb;
+}
+
+.resume-page-header {
+  flex-shrink: 0;
+  border-bottom: 1px solid #e5e7eb;
+  background: white;
+}
+
+.resume-page-header-inner {
+  padding: 16px 0;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: #2563eb;
+  padding: 8px 4px;
+}
+
+.back-button:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.resume-pdf-frame {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: none;
+  background: #e5e7eb;
+}
+
 footer {
   border-top: 1px solid #e5e7eb;
   padding: 24px;
