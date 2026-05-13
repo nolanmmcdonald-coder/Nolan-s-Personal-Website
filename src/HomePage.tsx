@@ -1,5 +1,15 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import githubBundle from "./data/githubProjects.json";
+
+type StoredGithubProject = {
+  name: string;
+  description: string;
+  longDescription: string;
+  tech: string[];
+  githubUrl: string;
+  liveUrl?: string;
+};
 
 type Project = {
   name: string;
@@ -10,6 +20,9 @@ type Project = {
   liveUrl?: string;
 };
 
+const DESCRIPTION_PLACEHOLDER =
+  "No description yet. On GitHub: open the repository → About (gear) → Description — add a short plain-text line (one or two sentences). Add topics there for skill tags, and Website for a Live Demo link.";
+
 type ExperienceItem = {
   title: string;
   company: string;
@@ -19,25 +32,20 @@ type ExperienceItem = {
   relevantCoursework?: string[];
 };
 
-const projects: Project[] = [
-  {
-    name: "Personal Website",
-    description: "A simple portfolio website built with React, TypeScript, and CSS.",
-    longDescription:
-      "This website is designed to be easy to expand over time. The project section currently uses local placeholder data, but it can later be replaced with data from the GitHub API.",
-    tech: ["React", "TypeScript", "CSS"],
-    githubUrl: "#",
-    liveUrl: "#",
-  },
-  {
-    name: "Project Placeholder",
-    description: "A placeholder card for a future GitHub-connected project.",
-    longDescription:
-      "Later, this card can automatically display a GitHub repository name, description, language, stars, and links pulled directly from your GitHub account.",
-    tech: ["GitHub API", "TypeScript"],
-    githubUrl: "#",
-  },
-];
+const projects: Project[] = (
+  githubBundle as { fetchedAt: string; projects: StoredGithubProject[] }
+).projects.map((p) => {
+  const raw = (p.description || "").trim();
+  const text = raw || DESCRIPTION_PLACEHOLDER;
+  return {
+    name: p.name,
+    description: text,
+    longDescription: text,
+    tech: p.tech ?? [],
+    githubUrl: p.githubUrl || undefined,
+    liveUrl: p.liveUrl || undefined,
+  };
+});
 
 const experienceItems: ExperienceItem[] = [
   {
@@ -103,11 +111,13 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="expanded-content">
           <p>{project.longDescription}</p>
 
-          <div className="tags">
-            {project.tech.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
+          {project.tech.length > 0 && (
+            <div className="tags">
+              {project.tech.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          )}
 
           <div className="links">
             {project.githubUrl && <a href={project.githubUrl}>GitHub</a>}
@@ -218,7 +228,9 @@ export default function HomePage() {
           <div className="section-heading">
             <h2>Projects</h2>
             <p>
-              Click each project to expand it. Later, this section can pull projects directly from GitHub.
+              Data comes from your GitHub repositories (description, topics, and website link). Run{" "}
+              <span className="inline-code">npm run fetch-projects</span> after you change a repo on GitHub, or it
+              refreshes automatically on <span className="inline-code">npm run build</span>.
             </p>
           </div>
 

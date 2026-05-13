@@ -1,0 +1,23 @@
+{
+  "fetchedAt": "2026-05-13T00:36:35.892Z",
+  "projects": [
+    {
+      "name": "Terminal-Based-Wordle",
+      "description": "",
+      "longDescription": "",
+      "tech": [
+        "Java"
+      ],
+      "githubUrl": "https://github.com/nolanmmcdonald-coder/Terminal-Based-Wordle"
+    },
+    {
+      "name": "Nolan-s-Personal-Website",
+      "description": "",
+      "longDescription": "",
+      "tech": [
+        "TypeScript"
+      ],
+      "githubUrl": "https://github.com/nolanmmcdonald-coder/Nolan-s-Personal-Website"
+    }
+  ]
+}
