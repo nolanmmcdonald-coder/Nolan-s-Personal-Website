@@ -110,19 +110,6 @@ nav a:hover {
   line-height: 1.7;
 }
 
-.inline-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.88em;
-  background: #f3f4f6;
-  padding: 2px 7px;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
-}
-
-.section-heading {
-  margin-bottom: 32px;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -147,6 +134,50 @@ nav a:hover {
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
+}
+
+.project-card-header {
+  align-items: center;
+}
+
+.project-card-header h3 {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.project-description {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.project-languages {
+  margin-top: 20px;
+}
+
+.project-detail-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.project-tags {
+  margin: 0;
+}
+
+.project-languages-empty {
+  margin: 0;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.project-links {
+  margin-top: 20px;
 }
 
 .card h3,

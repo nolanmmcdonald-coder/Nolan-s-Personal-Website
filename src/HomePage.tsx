@@ -96,11 +96,8 @@ function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article className="card">
-      <div className="card-header">
-        <div>
-          <h3>{project.name}</h3>
-          <p>{project.description}</p>
-        </div>
+      <div className="card-header project-card-header">
+        <h3>{project.name}</h3>
 
         <button type="button" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? "Hide" : "More"}
@@ -109,20 +106,28 @@ function ProjectCard({ project }: { project: Project }) {
 
       {isOpen && (
         <div className="expanded-content">
-          <p>{project.longDescription}</p>
+          <p className="project-description">{project.longDescription}</p>
 
-          {project.tech.length > 0 && (
-            <div className="tags">
-              {project.tech.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
+          <div className="project-languages">
+            <span className="project-detail-label">Languages used</span>
+            {project.tech.length > 0 ? (
+              <div className="tags project-tags">
+                {project.tech.map((item) => (
+                  <span key={item}>{item}</span>
+                ))}
+              </div>
+            ) : (
+              <p className="project-languages-empty">No topics or primary language on GitHub yet.</p>
+            )}
+          </div>
+
+          {project.githubUrl && (
+            <div className="links project-links">
+              <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                GitHub
+              </a>
             </div>
           )}
-
-          <div className="links">
-            {project.githubUrl && <a href={project.githubUrl}>GitHub</a>}
-            {project.liveUrl && <a href={project.liveUrl}>Live Demo</a>}
-          </div>
         </div>
       )}
     </article>
@@ -225,14 +230,7 @@ export default function HomePage() {
 
       <section id="projects" className="section">
         <div className="container">
-          <div className="section-heading">
-            <h2>Projects</h2>
-            <p>
-              Data comes from your GitHub repositories (description, topics, and website link). Run{" "}
-              <span className="inline-code">npm run fetch-projects</span> after you change a repo on GitHub, or it
-              refreshes automatically on <span className="inline-code">npm run build</span>.
-            </p>
-          </div>
+          <h2>Projects</h2>
 
           <div className="grid">
             {projects.map((project) => (

@@ -1,10 +1,10 @@
 {
-  "fetchedAt": "2026-05-13T00:36:35.892Z",
+  "fetchedAt": "2026-05-14T02:04:15.334Z",
   "projects": [
     {
       "name": "Terminal-Based-Wordle",
-      "description": "",
-      "longDescription": "",
+      "description": "A terminal-based Wordle game built in Java that uses a live API to load random 5-letter words. Players have 6 attempts to guess the hidden word with color-style feedback for correct and misplaced letters.",
+      "longDescription": "A terminal-based Wordle game built in Java that uses a live API to load random 5-letter words. Players have 6 attempts to guess the hidden word with color-style feedback for correct and misplaced letters.",
       "tech": [
         "Java"
       ],
@@ -12,8 +12,8 @@
     },
     {
       "name": "Nolan-s-Personal-Website",
-      "description": "",
-      "longDescription": "",
+      "description": "A personal portfolio website built with React, TypeScript, and Vite to showcase projects, experience, and technical skills. The site dynamically pulls GitHub repository data through the GitHub API and includes a dedicated resume page for easy access to professional information.",
+      "longDescription": "A personal portfolio website built with React, TypeScript, and Vite to showcase projects, experience, and technical skills. The site dynamically pulls GitHub repository data through the GitHub API and includes a dedicated resume page for easy access to professional information.",
       "tech": [
         "TypeScript"
       ],
