@@ -8,7 +8,8 @@ export default function ResumePage() {
       <header className="resume-page-header">
         <div className="container resume-page-header-inner">
           <Link to="/" className="back-button">
-            ← Back
+            <span aria-hidden="true">←</span>
+            Back to Home
           </Link>
         </div>
       </header>
